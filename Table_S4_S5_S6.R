@@ -29,4 +29,4 @@ for(x in 1:162){ # x = condition
   powermatrix[x,] <- powerr
 }
 
-write.table(powermatrix, file="LowerMaxNTableS1.csv")
+write.table(powermatrix, file="LowerMaxNTableS456.csv")
