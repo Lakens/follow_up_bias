@@ -23,11 +23,12 @@ unbiased_power <- melt(unbiased_power, id="ES") #convert to long format with res
 colnames(unbiased_power) <- c("N","ES","Power") 
 cbbPalette<-c("#5e3c99", "#e66101", "#fdb863", "#000000")
 
-tiff(file="Fig_8.tiff",width=2500,height=1700, units = "px", res = 300)
-ggplot(data=unbiased_power, aes(x = N, y=Power, group=ES, colour=ES)) +
-  scale_color_manual(values=cbbPalette) + #use custum color palette
-  geom_line(size=1.5) + #plot lines
+tiff(file="Fig_8.tiff",width=2700,height=1700, units = "px", res = 300)
+ggplot(data=unbiased_power, aes(x = N, y=Power, group=ES)) +
+  #scale_color_manual(values=cbbPalette) + #use custum color palette
+  geom_line(aes(linetype=ES),size=1.5) + #geom_point(size=5) + #plot lines and dots
   scale_x_continuous(breaks = c(25,75,125,175,225), labels= c(50,100,150,200,250)) + 
+  scale_linetype_manual(values=c(1,2,3)) + 
   ylab("Power")  + xlab("Sample size per condition") + #set labels
-  theme_bw(base_size=20) + expand_limits(y=c(0,1)) + theme(legend.title=element_blank(), legend.position = "top") #increase font size, put legend on top
+  theme_bw(base_size=20) + expand_limits(y=c(0,1)) + theme(legend.title=element_blank(), legend.position = "top", legend.key.width=unit(2,"cm")) #increase font size, put legend on top
 dev.off()
